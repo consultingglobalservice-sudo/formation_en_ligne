@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSC Business Center — Nos formations en ligne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#142238; --navy-3:#24395c; --gold:#B8934A; --gold-light:#D9BE87; --cream:#F7F4EC; --ink:#1B2430; --muted:#6B7480; --border:#E6E1D4; --ok:#3F7D58; }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Space Grotesk',sans-serif; background:var(--cream); color:var(--ink);}
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy-3)); color:#fff; padding:40px 24px;}
+  .hero-inner{max-width:1080px; margin:0 auto; display:flex; align-items:center; gap:26px; text-align:left;}
+  .hero .logo{height:72px; flex:0 0 auto;}
+  .hero h1{font-family:'Fraunces',serif; font-size:28px; margin:0 0 8px 0;}
+  .hero p{font-size:14.5px; color:#C9CFDA; max-width:560px; margin:0; line-height:1.6;}
+  .wrap{max-width:1080px; margin:0 auto; padding:40px 24px 70px 24px;}
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:900px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:620px){ .grid{grid-template-columns:1fr;} .hero h1{font-size:24px;} .hero-inner{flex-direction:column; align-items:flex-start; gap:14px;} }
+  .card{background:#fff; border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 1px 2px rgba(20,34,56,.06), 0 8px 24px rgba(20,34,56,.07); display:flex; flex-direction:column;}
+  .cover{height:150px; background:linear-gradient(135deg,var(--navy),var(--navy-3)); position:relative; display:flex; align-items:flex-end; padding:14px; background-size:cover; background-position:center;}
+  .cover .badge{position:absolute; top:12px; left:12px; background:var(--gold); color:#3E2E10; font-size:10.5px; font-weight:700; padding:5px 10px; border-radius:20px; letter-spacing:.02em;}
+  .cover .niveau{position:absolute; top:12px; right:12px; background:rgba(255,255,255,.18); color:#fff; font-size:10.5px; font-weight:600; padding:5px 10px; border-radius:20px;}
+  .body{padding:20px 20px 22px 20px; display:flex; flex-direction:column; gap:12px; flex:1;}
+  .tag{font-size:10.5px; letter-spacing:.06em; color:var(--gold); font-weight:700;}
+  .card h3{font-family:'Fraunces',serif; font-size:19px; margin:5px 0 0 0; line-height:1.3;}
+  .rating{display:flex; align-items:center; gap:6px;}
+  .rating .stars{color:var(--gold); font-size:12.5px; letter-spacing:1px;}
+  .rating span{font-size:12px; color:var(--muted);}
+  .programme{background:var(--cream); border-radius:10px; padding:11px 13px;}
+  .programme .h{font-size:10.5px; font-weight:700; color:var(--muted); margin-bottom:7px; letter-spacing:.03em;}
+  .programme ul{margin:0; padding:0; list-style:none;}
+  .programme li{font-size:12px; color:var(--ink); padding:3px 0; display:flex; align-items:flex-start; gap:6px;}
+  .programme li::before{content:"✓"; color:var(--ok); font-weight:700; flex:0 0 auto;}
+  .programme .more{font-size:11px; color:var(--muted); margin-top:3px; padding-left:18px;}
+  .card .meta{display:flex; flex-wrap:wrap; gap:14px; font-size:12px; padding:12px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+  .card .meta span{display:block; color:var(--muted); font-size:10px;}
+  .inclus{font-size:11.5px; color:var(--muted); line-height:1.6;}
+  .inclus b{color:var(--ink); font-weight:600;}
+  .card .footrow{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto; flex-wrap:nowrap;}
+  .prixblock{min-width:0; flex-shrink:1;}
+  .prixblock .barre{font-size:11px; color:var(--muted); text-decoration:line-through; margin-bottom:1px; white-space:nowrap;}
+  .card .prix{font-family:'Fraunces',serif; font-size:17px; font-weight:700; color:var(--navy); white-space:nowrap;}
+  .countdown{background:#FBEAE9; color:#B4453F; font-size:11.5px; font-weight:700; padding:7px 10px; border-radius:8px; text-align:center;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; background:var(--navy); color:#fff; text-decoration:none; padding:9px 14px; border-radius:8px; font-weight:600; font-size:12.5px; white-space:nowrap; flex-shrink:0;}
+  .btn:hover{background:var(--navy-3);}
+  .btn-secondary{background:#EDE7D8; color:var(--navy);}
+  .btn-secondary:hover{background:#E2DAC5;}
+  .empty{color:var(--muted); font-size:14px; text-align:center; padding:40px 0;}
+  .infobox{background:#fff; border:1px solid var(--border); border-radius:12px; padding:26px 30px; margin-top:10px;}
+  .infobox h3{font-family:'Fraunces',serif; font-size:16px; margin:0 0 14px 0; color:var(--navy);}
+  .infobox .infoline{font-size:13.5px; color:var(--ink); line-height:1.9;}
+  .section-title{margin:36px 0 18px 0;}
+  .section-title h2{font-family:'Fraunces',serif; font-size:21px; color:var(--navy); margin:0 0 4px 0;}
+  .section-title p{font-size:13px; color:var(--muted); margin:0;}
+  .statutbadge{font-size:11.5px; font-weight:700; padding:5px 10px; border-radius:20px;}
+  .statutbadge.ok{background:#E7F2EB; color:#3F7D58;}
+  .statutbadge.warn{background:#FBF1E1; color:#B8863A;}
+  .vtabs{display:flex; gap:8px; max-width:1080px; margin:0 auto 18px auto; padding:24px 24px 0 24px;}
+  .vtab-btn{background:#EDE7D8; color:var(--navy); border:none; padding:9px 16px; border-radius:8px; font-weight:600; font-size:13px; font-family:inherit; cursor:pointer;}
+  .vtab-btn.active{background:var(--navy); color:#fff;}
+  footer{text-align:center; padding:30px 20px; font-size:12.5px; color:var(--muted);}
+</style>
+</head>
+<body>
+  
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="logo" src="data:image/png;base64,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" alt="GSC Business Center">
+      <div>
+        <h1>Nos formations en ligne</h1>
+        <p>Des parcours pensés pour faire avancer concrètement votre projet, à votre rythme. Choisissez une formation et contactez-nous pour vous inscrire.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="grid">
+      
+      <div class="card">
+        <div class="cover" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDcwMCAzMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnZWNvbW1lcmNlIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzE0MjIzOCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNTUiIHN0b3AtY29sb3I9IiMxYzJlNGEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjQzOTVjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93ZWNvbW1lcmNlIiBjeD0iMC41IiBjeT0iMC41IiByPSIwLjUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOUJFODciIHN0b3Atb3BhY2l0eT0iMC4zNSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEOUJFODciIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZEdyYWRlY29tbWVyY2UiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4OTM0QSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZEdyYWRlY29tbWVyY2UiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOUJFODciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNCODkzNEEiLz48L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNiZ2Vjb21tZXJjZSkiLz4KICA8Y2lyY2xlIGN4PSI1OTAiIGN5PSI1NSIgcj0iMTcwIiBmaWxsPSJ1cmwoI2dsb3dlY29tbWVyY2UpIi8+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSIyNzAiIHI9IjEyMCIgZmlsbD0iI0I4OTM0QSIgb3BhY2l0eT0iMC4wNiIvPgoKICA8IS0tIGZpbmUgZGlhZ29uYWwgbGluZSB0ZXh0dXJlIC0tPgogIDxnIG9wYWNpdHk9IjAuMDUiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIj4KICAgIDxsaW5lIHgxPSIwIiB5MT0iMzAwIiB4Mj0iMzAwIiB5Mj0iMCIvPgogICAgPGxpbmUgeDE9IjYwIiB5MT0iMzAwIiB4Mj0iMzYwIiB5Mj0iMCIvPgogICAgPGxpbmUgeDE9IjEyMCIgeTE9IjMwMCIgeDI9IjQyMCIgeTI9IjAiLz4KICA8L2c+CgogIDwhLS0gY29ybmVyIGRvdCBncmlkIC0tPgogIDxnIG9wYWNpdHk9IjAuMTgiIGZpbGw9IiNEOUJFODciPgogICAgPGNpcmNsZSBjeD0iNDAiIGN5PSIzNiIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjQiIGN5PSIzNiIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iODgiIGN5PSIzNiIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI0MCIgY3k9IjU4IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjU4IiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iODAiIHI9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iNjYwIiBjeT0iMjY0IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2MzYiIGN5PSIyNjQiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjYxMiIgY3k9IjI2NCIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIyNDIiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjYzNiIgY3k9IjI0MiIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIyMjAiIHI9IjIuNiIvPgogIDwvZz4KCiAgPCEtLSB0aGluIGJyYW5kIGNvcm5lciBtYXJrIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI4LDIzMikiIG9wYWNpdHk9IjAuOSI+CiAgICA8cmVjdCB4PSIwIiB5PSIxMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjkiLz4KICAgIDxyZWN0IHg9IjEwIiB5PSIwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiNjOTRmOGYiLz4KICA8L2c+CiAgPHRleHQgeD0iNTQiIHk9IjI0NiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjE1IiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjg1Ij5HU0MgQnVzaW5lc3MgQ2VudGVyPC90ZXh0PgoKICAKICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsMTIwKSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5QkU4NyIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuNCIgc3Ryb2tlLWRhc2hhcnJheT0iNCA3Ii8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iNjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5QkU4NyIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMjUiLz4KICAgIDxwYXRoIGQ9Ik0gLTQwIC0xNCBMIC0zMiAtNDAgTCAzMiAtNDAgTCA0MCAtMTQgWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDlCRTg3IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgIDxyZWN0IHg9Ii00MiIgeT0iLTE0IiB3aWR0aD0iODQiIGhlaWdodD0iNjYiIHJ4PSI4IiBmaWxsPSJ1cmwoI2dvbGRHcmFkZWNvbW1lcmNlKSIvPgogICAgPHBhdGggZD0iTSAtMTggLTE0IFEgLTE4IDggMCA4IFEgMTggOCAxOCAtMTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjIzOCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxjaXJjbGUgY3g9Ii0xMiIgY3k9IjI2IiByPSI2IiBmaWxsPSIjMTQyMjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIxNCIgY3k9IjI2IiByPSI2IiBmaWxsPSIjMTQyMjM4Ii8+CiAgICA8cmVjdCB4PSItMzAiIHk9IjEyIiB3aWR0aD0iNjAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuNyIvPgogICAgPGcgb3BhY2l0eT0iMC44NSI+CiAgICAgIDxjaXJjbGUgY3g9IjYyIiBjeT0iLTQ2IiByPSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIuNSIvPgogICAgICA8dGV4dCB4PSI2MiIgeT0iLTQyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj4lPC90ZXh0PgogICAgPC9nPgogIDwvZz4KCjwvc3ZnPg==');">
+          <span class="badge">🔥 Best-seller</span>
+          <span class="niveau">Avancé</span>
+        </div>
+        <div class="body">
+          <div class="tag">FORMATION EN LIGNE</div>
+          <h3>Formation sur le E-commerce</h3>
+          <div class="rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span>4.0/5 — 19 avis</span></div>
+          
+        <div class="programme">
+          <div class="h">CE QUE VOUS ALLEZ APPRENDRE</div>
+          <ul><li>Module 00 _ Le parametrage Ailibaba</li><li>Module 01_Business Model Canevas</li><li>Module 02_Produit gagnant</li></ul>
+          <div class="more">+ 16 autres modules</div>
+        </div>
+          <div style="font-size:11.5px; color:var(--muted); font-weight:600; letter-spacing:.02em;">MODULES : 19 &nbsp;&middot;&nbsp; CHAPITRES : 35</div>
+          <div class="meta">
+            <div><span>FORMATEUR</span><b>Ablaye NDIAYE</b></div>
+            <div><span>DURÉE</span><b>12h40mn</b></div>
+            <div><span>ÉLÈVES</span><b>34 inscrits</b></div>
+            <div><span>FORMAT</span><b>Vidéo</b></div>
+          </div>
+          <div class="inclus"><b>&#10003;</b> Accès à vie &nbsp;&middot;&nbsp; <b>&#10003;</b> Suivi WhatsApp inclus</div>
+          
+          <div class="footrow">
+            <div class="prixblock">
+              
+              <div class="prix">20 000 FCFA</div>
+            </div>
+            <a class="btn" href="https://votre-pseudo.github.io/gsc-formations/inscription-formation.html?f=ecommerce" target="_blank">Acheter la formation</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cover" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDcwMCAzMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnZWNvbW1lcmNlIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzE0MjIzOCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNTUiIHN0b3AtY29sb3I9IiMxYzJlNGEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjQzOTVjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93ZWNvbW1lcmNlIiBjeD0iMC41IiBjeT0iMC41IiByPSIwLjUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOUJFODciIHN0b3Atb3BhY2l0eT0iMC4zNSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEOUJFODciIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZEdyYWRlY29tbWVyY2UiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4OTM0QSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZEdyYWRlY29tbWVyY2UiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOUJFODciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNCODkzNEEiLz48L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNiZ2Vjb21tZXJjZSkiLz4KICA8Y2lyY2xlIGN4PSI1OTAiIGN5PSI1NSIgcj0iMTcwIiBmaWxsPSJ1cmwoI2dsb3dlY29tbWVyY2UpIi8+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSIyNzAiIHI9IjEyMCIgZmlsbD0iI0I4OTM0QSIgb3BhY2l0eT0iMC4wNiIvPgoKICA8IS0tIGZpbmUgZGlhZ29uYWwgbGluZSB0ZXh0dXJlIC0tPgogIDxnIG9wYWNpdHk9IjAuMDUiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxIj4KICAgIDxsaW5lIHgxPSIwIiB5MT0iMzAwIiB4Mj0iMzAwIiB5Mj0iMCIvPgogICAgPGxpbmUgeDE9IjYwIiB5MT0iMzAwIiB4Mj0iMzYwIiB5Mj0iMCIvPgogICAgPGxpbmUgeDE9IjEyMCIgeTE9IjMwMCIgeDI9IjQyMCIgeTI9IjAiLz4KICA8L2c+CgogIDwhLS0gY29ybmVyIGRvdCBncmlkIC0tPgogIDxnIG9wYWNpdHk9IjAuMTgiIGZpbGw9IiNEOUJFODciPgogICAgPGNpcmNsZSBjeD0iNDAiIGN5PSIzNiIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjQiIGN5PSIzNiIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iODgiIGN5PSIzNiIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI0MCIgY3k9IjU4IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjU4IiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iODAiIHI9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iNjYwIiBjeT0iMjY0IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2MzYiIGN5PSIyNjQiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjYxMiIgY3k9IjI2NCIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIyNDIiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjYzNiIgY3k9IjI0MiIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIyMjAiIHI9IjIuNiIvPgogIDwvZz4KCiAgPCEtLSB0aGluIGJyYW5kIGNvcm5lciBtYXJrIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI4LDIzMikiIG9wYWNpdHk9IjAuOSI+CiAgICA8cmVjdCB4PSIwIiB5PSIxMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjkiLz4KICAgIDxyZWN0IHg9IjEwIiB5PSIwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiNjOTRmOGYiLz4KICA8L2c+CiAgPHRleHQgeD0iNTQiIHk9IjI0NiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjE1IiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjg1Ij5HU0MgQnVzaW5lc3MgQ2VudGVyPC90ZXh0PgoKICAKICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsMTIwKSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5QkU4NyIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuNCIgc3Ryb2tlLWRhc2hhcnJheT0iNCA3Ii8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iNjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5QkU4NyIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuMjUiLz4KICAgIDxwYXRoIGQ9Ik0gLTQwIC0xNCBMIC0zMiAtNDAgTCAzMiAtNDAgTCA0MCAtMTQgWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDlCRTg3IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgIDxyZWN0IHg9Ii00MiIgeT0iLTE0IiB3aWR0aD0iODQiIGhlaWdodD0iNjYiIHJ4PSI4IiBmaWxsPSJ1cmwoI2dvbGRHcmFkZWNvbW1lcmNlKSIvPgogICAgPHBhdGggZD0iTSAtMTggLTE0IFEgLTE4IDggMCA4IFEgMTggOCAxOCAtMTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjIzOCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxjaXJjbGUgY3g9Ii0xMiIgY3k9IjI2IiByPSI2IiBmaWxsPSIjMTQyMjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIxNCIgY3k9IjI2IiByPSI2IiBmaWxsPSIjMTQyMjM4Ii8+CiAgICA8cmVjdCB4PSItMzAiIHk9IjEyIiB3aWR0aD0iNjAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuNyIvPgogICAgPGcgb3BhY2l0eT0iMC44NSI+CiAgICAgIDxjaXJjbGUgY3g9IjYyIiBjeT0iLTQ2IiByPSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIuNSIvPgogICAgICA8dGV4dCB4PSI2MiIgeT0iLTQyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj4lPC90ZXh0PgogICAgPC9nPgogIDwvZz4KCjwvc3ZnPg==');">
+          <span class="badge">🔥 Best-seller</span>
+          <span class="niveau">Avancé</span>
+        </div>
+        <div class="body">
+          <div class="tag">FORMATION EN LIGNE</div>
+          <h3>Formation sur ALIBABA</h3>
+          <div class="rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>5.0/5 — 7 avis</span></div>
+          
+        <div class="programme">
+          <div class="h">CE QUE VOUS ALLEZ APPRENDRE</div>
+          <ul><li>Module 00 _ Le parametrage Ailibaba</li><li>Module 01_Business Model Canevas</li><li>Module 02_Produit gagnant</li></ul>
+          <div class="more">+ 8 autres modules</div>
+        </div>
+          <div style="font-size:11.5px; color:var(--muted); font-weight:600; letter-spacing:.02em;">MODULES : 11 &nbsp;&middot;&nbsp; CHAPITRES : 00</div>
+          <div class="meta">
+            <div><span>FORMATEUR</span><b>Ablaye NDIAYE</b></div>
+            <div><span>DURÉE</span><b>02h52mn</b></div>
+            <div><span>ÉLÈVES</span><b>119 inscrits</b></div>
+            <div><span>FORMAT</span><b>Vidéo</b></div>
+          </div>
+          <div class="inclus"><b>&#10003;</b> Accès à vie &nbsp;&middot;&nbsp; <b>&#10003;</b> Suivi WhatsApp inclus</div>
+          <div class="countdown" data-promo-end="2026-09-20T22:34">⏳ Offre limitée : finit dans 4j 09h 17min</div>
+          <div class="footrow">
+            <div class="prixblock">
+              <div class="barre">15 000 FCFA</div>
+              <div class="prix">5 000 FCFA</div>
+            </div>
+            <a class="btn" href="https://votre-pseudo.github.io/gsc-formations/inscription-formation.html?f=alibaba" target="_blank">Acheter la formation</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cover" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDcwMCAzMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJncHViX3NvY2lhbCIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxNDIyMzgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjMWMyZTRhIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzI0Mzk1YyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvd3B1Yl9zb2NpYWwiIGN4PSIwLjUiIGN5PSIwLjUiIHI9IjAuNSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0Q5QkU4NyIgc3RvcC1vcGFjaXR5PSIwLjM1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0Q5QkU4NyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnb2xkR3JhZHB1Yl9zb2NpYWwiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4OTM0QSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZEdyYWRzb2NpYWwiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOUJFODciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNCODkzNEEiLz48L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNiZ3B1Yl9zb2NpYWwpIi8+CiAgPGNpcmNsZSBjeD0iNTkwIiBjeT0iNTUiIHI9IjE3MCIgZmlsbD0idXJsKCNnbG93cHViX3NvY2lhbCkiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjI3MCIgcj0iMTIwIiBmaWxsPSIjQjg5MzRBIiBvcGFjaXR5PSIwLjA2Ii8+CgogIDwhLS0gZmluZSBkaWFnb25hbCBsaW5lIHRleHR1cmUgLS0+CiAgPGcgb3BhY2l0eT0iMC4wNSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiPgogICAgPGxpbmUgeDE9IjAiIHkxPSIzMDAiIHgyPSIzMDAiIHkyPSIwIi8+CiAgICA8bGluZSB4MT0iNjAiIHkxPSIzMDAiIHgyPSIzNjAiIHkyPSIwIi8+CiAgICA8bGluZSB4MT0iMTIwIiB5MT0iMzAwIiB4Mj0iNDIwIiB5Mj0iMCIvPgogIDwvZz4KCiAgPCEtLSBjb3JuZXIgZG90IGdyaWQgLS0+CiAgPGcgb3BhY2l0eT0iMC4xOCIgZmlsbD0iI0Q5QkU4NyI+CiAgICA8Y2lyY2xlIGN4PSI0MCIgY3k9IjM2IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjM2IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI4OCIgY3k9IjM2IiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iNTgiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iNTgiIHI9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iNDAiIGN5PSI4MCIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIyNjQiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjYzNiIgY3k9IjI2NCIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjEyIiBjeT0iMjY0IiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjY2MCIgY3k9IjI0MiIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjM2IiBjeT0iMjQyIiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjY2MCIgY3k9IjIyMCIgcj0iMi42Ii8+CiAgPC9nPgoKICA8IS0tIHRoaW4gYnJhbmQgY29ybmVyIG1hcmsgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjgsMjMyKSIgb3BhY2l0eT0iMC45Ij4KICAgIDxyZWN0IHg9IjAiIHk9IjEwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuOSIvPgogICAgPHJlY3QgeD0iMTAiIHk9IjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iI2M5NGY4ZiIvPgogIDwvZz4KICA8dGV4dCB4PSI1NCIgeT0iMjQ2IiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuODUiPkdTQyBCdXNpbmVzcyBDZW50ZXI8L3RleHQ+CgogIAogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwxMjApIj4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSI4OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDlCRTg3IiBzdHJva2Utd2lkdGg9IjIuNSIgb3BhY2l0eT0iMC40IiBzdHJva2UtZGFzaGFycmF5PSI0IDciLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSI2NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDlCRTg3IiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC4yNSIvPgogICAgPHBhdGggZD0iTSAtMzQgLTggTCA2IC0zMiBMIDYgMzIgTCAtMzQgOCBaIiBmaWxsPSJ1cmwoI2dvbGRHcmFkc29jaWFsKSIvPgogICAgPHJlY3QgeD0iLTQ0IiB5PSItMTMiIHdpZHRoPSIxMiIgaGVpZ2h0PSIyNiIgcng9IjMiIGZpbGw9InVybCgjZ29sZEdyYWRzb2NpYWwpIi8+CiAgICA8cGF0aCBkPSJNIDYgLTMyIFEgNDIgLTMyIDQyIDAgUSA0MiAzMiA2IDMyIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5QkU4NyIgc3Ryb2tlLXdpZHRoPSI1LjUiLz4KICAgIDxwYXRoIGQ9Ik0gLTIwIDEyIEwgLTEzIDM4IEwgLTEgMzggTCAtNyAxMiBaIiBmaWxsPSIjRkZGRkZGIi8+CiAgICA8ZyBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjkiPgogICAgICA8cGF0aCBkPSJNNTIgLTQ2IGMzIC00IDkgLTQgOSAyIGMwIDUgLTkgMTAgLTkgMTAgcy05IC01IC05IC0xMCBjMCAtNiA2IC02IDkgLTJ6IiB0cmFuc2Zvcm09InNjYWxlKDAuOSkiLz4KICAgIDwvZz4KICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iLTYiIHI9IjQiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuODUiLz4KICAgIDxjaXJjbGUgY3g9IjY2IiBjeT0iMTAiIHI9IjIuNiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjIwIiByPSIzIiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjciLz4KICA8L2c+Cgo8L3N2Zz4=');">
+          <span class="badge">🔥 Best-seller</span>
+          <span class="niveau">Avancé</span>
+        </div>
+        <div class="body">
+          <div class="tag">FORMATION EN LIGNE</div>
+          <h3>Formation sur la Publicité Facebook / Instagram</h3>
+          <div class="rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.6/5 — 11 avis</span></div>
+          
+        <div class="programme">
+          <div class="h">CE QUE VOUS ALLEZ APPRENDRE</div>
+          <ul><li>Module_01_Entreprenariat & Ecommerce</li><li>Module_02_La prise en main des réseaux sociaux</li><li>Module_03_Paramètrage du pixel Facebook</li></ul>
+          <div class="more">+ 5 autres modules</div>
+        </div>
+          <div style="font-size:11.5px; color:var(--muted); font-weight:600; letter-spacing:.02em;">MODULES : 08 &nbsp;&middot;&nbsp; CHAPITRES : 35</div>
+          <div class="meta">
+            <div><span>FORMATEUR</span><b>Ablaye NDIAYE</b></div>
+            <div><span>DURÉE</span><b>09h48mn</b></div>
+            <div><span>ÉLÈVES</span><b>66 inscrits</b></div>
+            <div><span>FORMAT</span><b>Vidéo</b></div>
+          </div>
+          <div class="inclus"><b>&#10003;</b> Accès à vie &nbsp;&middot;&nbsp; <b>&#10003;</b> Suivi WhatsApp inclus</div>
+          
+          <div class="footrow">
+            <div class="prixblock">
+              
+              <div class="prix">15 000 FCFA</div>
+            </div>
+            <a class="btn" href="https://votre-pseudo.github.io/gsc-formations/inscription-formation.html?f=facebook" target="_blank">Acheter la formation</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cover" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDcwMCAzMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnbWFya2V0aW5nX2RpZ2l0YWwiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTQyMjM4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC41NSIgc3RvcC1jb2xvcj0iIzFjMmU0YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyNDM5NWMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3dtYXJrZXRpbmdfZGlnaXRhbCIgY3g9IjAuNSIgY3k9IjAuNSIgcj0iMC41Ij4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3IiBzdG9wLW9wYWNpdHk9IjAuMzUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDlCRTg3IiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdvbGRHcmFkbWFya2V0aW5nX2RpZ2l0YWwiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4OTM0QSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZEdyYWRta3QiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOUJFODciLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNCODkzNEEiLz48L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNiZ21hcmtldGluZ19kaWdpdGFsKSIvPgogIDxjaXJjbGUgY3g9IjU5MCIgY3k9IjU1IiByPSIxNzAiIGZpbGw9InVybCgjZ2xvd21hcmtldGluZ19kaWdpdGFsKSIvPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iMjcwIiByPSIxMjAiIGZpbGw9IiNCODkzNEEiIG9wYWNpdHk9IjAuMDYiLz4KCiAgPCEtLSBmaW5lIGRpYWdvbmFsIGxpbmUgdGV4dHVyZSAtLT4KICA8ZyBvcGFjaXR5PSIwLjA1IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMSI+CiAgICA8bGluZSB4MT0iMCIgeTE9IjMwMCIgeDI9IjMwMCIgeTI9IjAiLz4KICAgIDxsaW5lIHgxPSI2MCIgeTE9IjMwMCIgeDI9IjM2MCIgeTI9IjAiLz4KICAgIDxsaW5lIHgxPSIxMjAiIHkxPSIzMDAiIHgyPSI0MjAiIHkyPSIwIi8+CiAgPC9nPgoKICA8IS0tIGNvcm5lciBkb3QgZ3JpZCAtLT4KICA8ZyBvcGFjaXR5PSIwLjE4IiBmaWxsPSIjRDlCRTg3Ij4KICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iMzYiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iMzYiIHI9IjIuNiIvPjxjaXJjbGUgY3g9Ijg4IiBjeT0iMzYiIHI9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iNDAiIGN5PSI1OCIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjQiIGN5PSI1OCIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI0MCIgY3k9IjgwIiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjY2MCIgY3k9IjI2NCIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjM2IiBjeT0iMjY0IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2MTIiIGN5PSIyNjQiIHI9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iNjYwIiBjeT0iMjQyIiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2MzYiIGN5PSIyNDIiIHI9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iNjYwIiBjeT0iMjIwIiByPSIyLjYiLz4KICA8L2c+CgogIDwhLS0gdGhpbiBicmFuZCBjb3JuZXIgbWFyayAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOCwyMzIpIiBvcGFjaXR5PSIwLjkiPgogICAgPHJlY3QgeD0iMCIgeT0iMTAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iMC45Ii8+CiAgICA8cmVjdCB4PSIxMCIgeT0iMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjYzk0ZjhmIi8+CiAgPC9nPgogIDx0ZXh0IHg9IjU0IiB5PSIyNDYiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNSIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iMC44NSI+R1NDIEJ1c2luZXNzIENlbnRlcjwvdGV4dD4KCiAgCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAwLDEyMCkiPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9Ijg4IiBmaWxsPSJub25lIiBzdHJva2U9IiNEOUJFODciIHN0cm9rZS13aWR0aD0iMi41IiBvcGFjaXR5PSIwLjQiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNyIvPgogICAgPGNpcmNsZSBjeD0iLTE4IiBjeT0iOCIgcj0iMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5QkU4NyIgc3Ryb2tlLXdpZHRoPSI1LjUiLz4KICAgIDxjaXJjbGUgY3g9Ii0xOCIgY3k9IjgiIHI9IjE3IiBmaWxsPSJub25lIiBzdHJva2U9IiNEOUJFODciIHN0cm9rZS13aWR0aD0iNCIvPgogICAgPGNpcmNsZSBjeD0iLTE4IiBjeT0iOCIgcj0iNSIgZmlsbD0idXJsKCNnb2xkR3JhZG1rdCkiLz4KICAgIDxnPgogICAgICA8cmVjdCB4PSIyNCIgeT0iNCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjI2IiByeD0iMiIgZmlsbD0iI0Q5QkU4NyIgb3BhY2l0eT0iMC44NSIvPgogICAgICA8cmVjdCB4PSIzOCIgeT0iLTEwIiB3aWR0aD0iMTAiIGhlaWdodD0iNDAiIHJ4PSIyIiBmaWxsPSIjRDlCRTg3Ii8+CiAgICAgIDxyZWN0IHg9IjUyIiB5PSItMjYiIHdpZHRoPSIxMCIgaGVpZ2h0PSI1NiIgcng9IjIiIGZpbGw9InVybCgjZ29sZEdyYWRta3QpIi8+CiAgICA8L2c+CiAgICA8cGF0aCBkPSJNIDIwIC0zMCBMIDQwIC00NiBMIDYwIC0zNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTTYwIC0zNCBsIDggLTIgbCAtMiA4IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPC9nPgoKPC9zdmc+');">
+          
+          <span class="niveau">Débutant</span>
+        </div>
+        <div class="body">
+          <div class="tag">FORMATION EN LIGNE</div>
+          <h3>Formation sur le Marketing digital</h3>
+          <div class="rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.8/5 — 20 avis</span></div>
+          
+        <div class="programme">
+          <div class="h">CE QUE VOUS ALLEZ APPRENDRE</div>
+          <ul><li>Business model canevas</li><li>Publicité marketing</li><li>Collecte des e-mails</li></ul>
+          <div class="more">+ 9 autres modules</div>
+        </div>
+          <div style="font-size:11.5px; color:var(--muted); font-weight:600; letter-spacing:.02em;">MODULES : 12 &nbsp;&middot;&nbsp; CHAPITRES : 00</div>
+          <div class="meta">
+            <div><span>FORMATEUR</span><b>Ablaye NDIAYE</b></div>
+            <div><span>DURÉE</span><b>01h42mn</b></div>
+            <div><span>ÉLÈVES</span><b>53 inscrits</b></div>
+            <div><span>FORMAT</span><b>Vidéo</b></div>
+          </div>
+          <div class="inclus"><b>&#10003;</b> Accès à vie &nbsp;&middot;&nbsp; <b>&#10003;</b> Suivi WhatsApp inclus</div>
+          <div class="countdown" data-promo-end="2026-09-18T22:31">⏳ Offre limitée : finit dans 2j 09h 14min</div>
+          <div class="footrow">
+            <div class="prixblock">
+              <div class="barre">25 000 FCFA</div>
+              <div class="prix">10 000 FCFA</div>
+            </div>
+            <a class="btn" href="https://votre-pseudo.github.io/gsc-formations/inscription-formation.html?f=marketing" target="_blank">Acheter la formation</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cover" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDcwMCAzMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJncHJvZHVpdHNfZGlnaXRhdXgiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTQyMjM4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC41NSIgc3RvcC1jb2xvcj0iIzFjMmU0YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyNDM5NWMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3dwcm9kdWl0c19kaWdpdGF1eCIgY3g9IjAuNSIgY3k9IjAuNSIgcj0iMC41Ij4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3IiBzdG9wLW9wYWNpdHk9IjAuMzUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDlCRTg3IiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdvbGRHcmFkcHJvZHVpdHNfZGlnaXRhdXgiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I4OTM0QSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZEdyYWRwcm9kIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRDlCRTg3Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjQjg5MzRBIi8+PC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9InVybCgjYmdwcm9kdWl0c19kaWdpdGF1eCkiLz4KICA8Y2lyY2xlIGN4PSI1OTAiIGN5PSI1NSIgcj0iMTcwIiBmaWxsPSJ1cmwoI2dsb3dwcm9kdWl0c19kaWdpdGF1eCkiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjI3MCIgcj0iMTIwIiBmaWxsPSIjQjg5MzRBIiBvcGFjaXR5PSIwLjA2Ii8+CgogIDwhLS0gZmluZSBkaWFnb25hbCBsaW5lIHRleHR1cmUgLS0+CiAgPGcgb3BhY2l0eT0iMC4wNSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiPgogICAgPGxpbmUgeDE9IjAiIHkxPSIzMDAiIHgyPSIzMDAiIHkyPSIwIi8+CiAgICA8bGluZSB4MT0iNjAiIHkxPSIzMDAiIHgyPSIzNjAiIHkyPSIwIi8+CiAgICA8bGluZSB4MT0iMTIwIiB5MT0iMzAwIiB4Mj0iNDIwIiB5Mj0iMCIvPgogIDwvZz4KCiAgPCEtLSBjb3JuZXIgZG90IGdyaWQgLS0+CiAgPGcgb3BhY2l0eT0iMC4xOCIgZmlsbD0iI0Q5QkU4NyI+CiAgICA8Y2lyY2xlIGN4PSI0MCIgY3k9IjM2IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjM2IiByPSIyLjYiLz48Y2lyY2xlIGN4PSI4OCIgY3k9IjM2IiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjQwIiBjeT0iNTgiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjY0IiBjeT0iNTgiIHI9IjIuNiIvPgogICAgPGNpcmNsZSBjeD0iNDAiIGN5PSI4MCIgcj0iMi42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjAiIGN5PSIyNjQiIHI9IjIuNiIvPjxjaXJjbGUgY3g9IjYzNiIgY3k9IjI2NCIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjEyIiBjeT0iMjY0IiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjY2MCIgY3k9IjI0MiIgcj0iMi42Ii8+PGNpcmNsZSBjeD0iNjM2IiBjeT0iMjQyIiByPSIyLjYiLz4KICAgIDxjaXJjbGUgY3g9IjY2MCIgY3k9IjIyMCIgcj0iMi42Ii8+CiAgPC9nPgoKICA8IS0tIHRoaW4gYnJhbmQgY29ybmVyIG1hcmsgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjgsMjMyKSIgb3BhY2l0eT0iMC45Ij4KICAgIDxyZWN0IHg9IjAiIHk9IjEwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuOSIvPgogICAgPHJlY3QgeD0iMTAiIHk9IjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iI2M5NGY4ZiIvPgogIDwvZz4KICA8dGV4dCB4PSI1NCIgeT0iMjQ2IiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9IjAuODUiPkdTQyBCdXNpbmVzcyBDZW50ZXI8L3RleHQ+CgogIAogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwxMjQpIj4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSI4OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDlCRTg3IiBzdHJva2Utd2lkdGg9IjIuNSIgb3BhY2l0eT0iMC40IiBzdHJva2UtZGFzaGFycmF5PSI0IDciLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSI2NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDlCRTg3IiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC4yNSIvPgogICAgPCEtLSBsYXB0b3AgLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOCwxMCkiPgogICAgICA8cmVjdCB4PSItNDAiIHk9Ii0yNCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjUwIiByeD0iNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDlCRTg3IiBzdHJva2Utd2lkdGg9IjQiLz4KICAgICAgPHJlY3QgeD0iLTM0IiB5PSItMTgiIHdpZHRoPSI2OCIgaGVpZ2h0PSIzOCIgcng9IjIiIGZpbGw9IiMxNDIyMzgiIG9wYWNpdHk9IjAuNSIvPgogICAgICA8cGF0aCBkPSJNIC00OCAyNiBMIDQ4IDI2IEwgNDAgMzQgTCAtNDAgMzQgWiIgZmlsbD0idXJsKCNnb2xkR3JhZHByb2QpIi8+CiAgICA8L2c+CiAgICA8IS0tIHVwd2FyZCBhcnJvdyAvIHVwbG9hZCBmcm9tIHNjcmVlbiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04LC00KSI+CiAgICAgIDxwYXRoIGQ9Ik0wLDE4IEwwLC0xNCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgIDxwYXRoIGQ9Ik0tMTEsLTMgTDAsLTE2IEwxMSwtMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICA8L2c+CiAgICA8IS0tIGNvaW4gYmFkZ2UgLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MCwtNDApIj4KICAgICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjIwIiBmaWxsPSJ1cmwoI2dvbGRHcmFkcHJvZCkiLz4KICAgICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjYiLz4KICAgICAgPHRleHQgeD0iMCIgeT0iNiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTQyMjM4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iYm9sZCI+RjwvdGV4dD4KICAgIDwvZz4KICAgIDxjaXJjbGUgY3g9Ii02MiIgY3k9Ii00NCIgcj0iMyIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iMC43Ii8+CiAgICA8Y2lyY2xlIGN4PSItNTAiIGN5PSItNTgiIHI9IjIuMiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iMC41Ii8+CiAgPC9nPgoKPC9zdmc+');">
+          <span class="badge">🔥 Best-seller</span>
+          <span class="niveau">Intermédiaire</span>
+        </div>
+        <div class="body">
+          <div class="tag">FORMATION EN LIGNE</div>
+          <h3>Comment créer et vendre des produits digitaux</h3>
+          <div class="rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.7/5 — 6 avis</span></div>
+          
+        <div class="programme">
+          <div class="h">CE QUE VOUS ALLEZ APPRENDRE</div>
+          <ul><li>Présentation</li><li>Introduction à la vente des produits digitaux</li><li>Créer un produit digital</li></ul>
+          <div class="more">+ 5 autres modules</div>
+        </div>
+          <div style="font-size:11.5px; color:var(--muted); font-weight:600; letter-spacing:.02em;">MODULES : 08 &nbsp;&middot;&nbsp; CHAPITRES : 00</div>
+          <div class="meta">
+            <div><span>FORMATEUR</span><b>Ablaye NDIAYE</b></div>
+            <div><span>DURÉE</span><b>01h33mn</b></div>
+            <div><span>ÉLÈVES</span><b>9 inscrits</b></div>
+            <div><span>FORMAT</span><b>Vidéo</b></div>
+          </div>
+          <div class="inclus"><b>&#10003;</b> Accès à vie &nbsp;&middot;&nbsp; <b>&#10003;</b> Suivi WhatsApp inclus</div>
+          
+          <div class="footrow">
+            <div class="prixblock">
+              
+              <div class="prix">10 000 FCFA</div>
+            </div>
+            <a class="btn" href="https://votre-pseudo.github.io/gsc-formations/inscription-formation.html?f=digitaux" target="_blank">Acheter la formation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="wrap" style="padding-top:0;">
+    <div class="infobox">
+      <h3>À propos de nos formations en ligne</h3>
+      <div class="infoline">🎓 Accès à vie à toutes les vidéos de la formation après paiement</div><div class="infoline">🎥 Formations au format vidéo avec démonstrations pratiques</div><div class="infoline">📱 Support et suivi disponibles via WhatsApp après votre inscription</div><div class="infoline">💳 Paiement sécurisé par Wave, Orange Money, MTN Money ou carte bancaire</div><div class="infoline">📄 Aucun prérequis technique — chaque formation démarre par les bases</div>
+    </div>
+  </div>
+  
+  <footer>GSC Business Center · Mbour · Thiès · Dakar · +221 78 822 84 16</footer>
+  <script>
+    function formatCountdown(endStr){
+      var end = new Date(endStr);
+      var diff = end - new Date();
+      if(diff <= 0) return null;
+      var days = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var minutes = Math.floor((diff % 3600000) / 60000);
+      var seconds = Math.floor((diff % 60000) / 1000);
+      if(days > 0) return days + 'j ' + String(hours).padStart(2,'0') + 'h ' + String(minutes).padStart(2,'0') + 'min';
+      if(hours > 0) return hours + 'h ' + String(minutes).padStart(2,'0') + 'min ' + String(seconds).padStart(2,'0') + 's';
+      return minutes + 'min ' + String(seconds).padStart(2,'0') + 's';
+    }
+    setInterval(function(){
+      document.querySelectorAll('.countdown').forEach(function(el){
+        var label = formatCountdown(el.getAttribute('data-promo-end'));
+        if(label){
+          el.textContent = '⏳ Offre limitée : finit dans ' + label;
+        } else {
+          // Promo expirée : on masque le compte à rebours et le prix barré, le prix normal reste affiché
+          el.style.display = 'none';
+          var barre = el.parentElement.querySelector('.footrow .barre');
+          if(barre) barre.style.display = 'none';
+        }
+      });
+    }, 1000);
+  </script>
+</body>
+</html>
