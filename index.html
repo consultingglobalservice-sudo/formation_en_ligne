@@ -63,6 +63,8 @@
   .vtab-btn.active{background:var(--navy); color:#fff;}
   footer{text-align:center; padding:30px 20px; font-size:12.5px; color:var(--muted);}
 </style>
+<!-- Suivi publicitaire GSC : Pixel Meta + Pixel TikTok (visites) -->
+<script src="suivi-pixels.js"></script>
 </head>
 <body>
   
@@ -300,6 +302,53 @@
         }
       });
     }, 1000);
+  </script>
+  <!-- Suivi publicitaire GSC : formations vues + clics "Acheter" -->
+  <script>
+  (function(){
+    if (typeof window.gscEvent !== 'function') window.gscEvent = function(){};
+    // Code MoneyFusion -> identifiant court de la formation (utilisé aussi dans merci.html)
+    var FORMATIONS = {
+      '6aaa88ba54ef3cccdd50a334': 'ecommerce',
+      '6aaa892754ef3cccdd50b925': 'alibaba',
+      '6aa9bb6854ef3cccdd3f2d16': 'pub-facebook',
+      '6aaa89e154ef3cccdd50d77a': 'marketing-digital',
+      '6aa9bc4e54ef3cccdd3f47f0': 'produits-digitaux'
+    };
+    function infos(card){
+      var btn = card.querySelector('a.btn[href*="moneyfusion"]');
+      var code = btn.getAttribute('href').split('/').pop();
+      var prix = card.querySelector('.footrow .prix');
+      return {
+        id:   FORMATIONS[code] || code,
+        nom:  card.querySelector('h3').textContent.trim(),
+        prix: prix ? parseInt(prix.textContent.replace(/\D/g,''), 10) || 0 : 0
+      };
+    }
+    var cartes = [].filter.call(document.querySelectorAll('.card'), function(c){
+      return c.querySelector('a.btn[href*="moneyfusion"]') && c.querySelector('h3');
+    });
+
+    // 1) Formation VUE : quand une carte est visible à moitié à l'écran (1 fois par formation)
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entrees){
+        entrees.forEach(function(e){
+          if (e.isIntersecting) { gscEvent('ViewContent', infos(e.target)); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.5 });
+      cartes.forEach(function(c){ io.observe(c); });
+    }
+
+    // 2) Clic sur "Acheter la formation" = début de paiement
+    cartes.forEach(function(card){
+      card.querySelector('a.btn[href*="moneyfusion"]').addEventListener('click', function(){
+        var f = infos(card);
+        var eventId = 'achat-' + f.id + '-' + Date.now();
+        try { localStorage.setItem('gsc_achat_en_cours', JSON.stringify({ f: f, eventId: eventId, t: Date.now() })); } catch(e){}
+        gscEvent('InitiateCheckout', f, { eventId: 'ic-' + eventId });
+      });
+    });
+  })();
   </script>
 </body>
 </html>
