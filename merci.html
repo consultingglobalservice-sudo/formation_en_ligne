@@ -68,7 +68,7 @@
   if (enCours && Date.now() - enCours.t > 24*3600*1000) enCours = null;   // clic "Acheter" de plus de 24 h : ignoré
 
   var f = null, eventId = null;
-  if (enCours && (!slug || enCours.f.id === slug)) {
+  if (enCours && (!slug || enCours.f.id === slug || !CATALOGUE[slug])) {
     f = enCours.f; eventId = enCours.eventId;
   } else if (slug && CATALOGUE[slug]) {
     f = { id: slug, nom: CATALOGUE[slug].nom, prix: CATALOGUE[slug].prix };
